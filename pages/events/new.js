@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import fetch from 'isomorphic-unfetch'
 import { useRouter } from 'next/router'
+import { Button, Card, TextField } from '@material-ui/core'
+import Spacer from '../../components/Spacer'
+import styles from '../../styles/new.module.css'
 
 const NewEvent = () => {
   const [form, setForm] = useState({ title: '' })
@@ -57,28 +60,32 @@ const NewEvent = () => {
   }
 
   return (
-    <div className='form-container'>
+    <div className={styles.card}>
       <h1>Create Event</h1>
-      <div>
+      <Card raised>
         {
           isSubmitting
             ? <p>loading...</p>
             : (
-              <form onSubmit={handleSubmit}>
-                <input
-                  type='text'
-                  placeholder='Title'
+              <div className={styles.form} onSubmit={handleSubmit}>
+                <TextField
+                  id='new-event-title'
                   name='title'
+                  label='Title'
                   onChange={handleChange}
                 />
-                <input
-                  type='submit'
-                  value='Submit'
-                />
-              </form>
+                <Spacer size='2em' />
+                <Button
+                  variant='contained'
+                  color='primary'
+                  onClick={handleSubmit}
+                >
+                  Submit
+                </Button>
+              </div>
             )
         }
-      </div>
+      </Card>
     </div>
   )
 }
