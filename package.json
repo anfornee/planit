@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.11.2",
+    "@material-ui/pickers": "^3.2.10",
     "isomorphic-unfetch": "^3.1.0",
     "mongoose": "^5.11.10",
     "next": "10.0.5",

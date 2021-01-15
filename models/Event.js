@@ -7,6 +7,21 @@ const EventSchema = new mongoose.Schema({
     unique: true,
     trim: true,
     maxlength: [40, 'Title cannot be mor ethan 40 characters.']
+  },
+  day: {
+    type: String,
+    required: [true, 'Please add a day.'],
+    trim: true
+  },
+  startTime: {
+    type: String,
+    required: [true, 'Please add a start time.'],
+    trim: true
+  },
+  endTime: {
+    type: String,
+    required: [true, 'Please add an end time.'],
+    trim: true
   }
 })
 
