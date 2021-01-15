@@ -2,6 +2,20 @@ import fetch from 'isomorphic-unfetch'
 import NewEvent from '../../components/week/NewEvent'
 import Weekday from '../../components/week/Weekday'
 
+/*
+*
+*
+*
+*
+Work in functionality to select multiple days
+Probably a radio select for the form
+and a true false check in the database for each day
+*
+*
+*
+*
+*/
+
 const Events = ({ events }) => {
   const days = {}
   events.forEach(event => {

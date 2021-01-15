@@ -89,6 +89,11 @@ const NewEvent = () => {
                   onChange={e => setTitle(e.target.value)}
                 />
                 <Spacer size='1em' />
+                {
+                  /*
+                  THINK ABOUT MAKING THIS A RADIO SELECTOR
+                  */
+                }
                 <Select
                   native
                   value={day}
@@ -107,12 +112,6 @@ const NewEvent = () => {
                   <option value='Saturday'>Saturday</option>
                   <option value='Sunday'>Sunday</option>
                 </Select>
-                {/* <TextField
-                  id='new-event-day'
-                  name='day'
-                  label='Day'
-                  onChange={e => setDay(e.target.value)}
-                /> */}
                 <Spacer size='1em' />
                 <TextField
                   id='new-event-start-time'
