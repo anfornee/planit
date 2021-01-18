@@ -34,7 +34,7 @@ const NewEvent = ({ close }) => {
       endTime
     }
     try {
-      await fetch('https://planit-seven.vercel.app/api/events', {
+      await fetch('/api/events', {
         method: 'POST',
         headers: {
           Accept: 'application/json',

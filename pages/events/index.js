@@ -65,7 +65,7 @@ const Events = ({ events }) => {
 }
 
 Events.getInitialProps = async () => {
-  const res = await fetch('https://planit-seven.vercel.app/api/events')
+  const res = await fetch('/api/events')
   const { data } = await res.json()
 
   return {
