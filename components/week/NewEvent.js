@@ -1,13 +1,19 @@
 import { useState, useEffect } from 'react'
 import fetch from 'isomorphic-unfetch'
 import { useRouter } from 'next/router'
-import { Button, Card, Select, TextField } from '@material-ui/core'
+import { Button, Card, TextField, Checkbox, FormControlLabel, FormGroup } from '@material-ui/core'
 import Spacer from '../../components/Spacer'
 import styles from './new.module.css'
 
-const NewEvent = () => {
+const NewEvent = ({ close }) => {
   const [title, setTitle] = useState('')
-  const [day, setDay] = useState('')
+  const [sunday, setSunday] = useState(false)
+  const [monday, setMonday] = useState(false)
+  const [tuesday, setTuesday] = useState(false)
+  const [wednesday, setWednesday] = useState(false)
+  const [thursday, setThursday] = useState(false)
+  const [friday, setFriday] = useState(false)
+  const [saturday, setSaturday] = useState(false)
   const [startTime, setStartTime] = useState('09:00')
   const [endTime, setEndTime] = useState('10:00')
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -17,7 +23,13 @@ const NewEvent = () => {
   const createEvent = async () => {
     const form = {
       title,
-      day,
+      sunday,
+      monday,
+      tuesday,
+      wednesday,
+      thursday,
+      friday,
+      saturday,
       startTime,
       endTime
     }
@@ -58,10 +70,6 @@ const NewEvent = () => {
       err.title = 'Title is required'
     }
 
-    if (!day) {
-      err.day = 'Day is required'
-    }
-
     if (!startTime) {
       err.startTime = 'Start time is required'
     }
@@ -74,13 +82,16 @@ const NewEvent = () => {
   }
 
   return (
-    <div className={styles.card}>
-      <Card raised>
+    <div className={styles.container}>
+      <Card className={styles.card} raised>
         {
           isSubmitting
             ? <span>loading...</span>
             : (
               <div className={styles.form} onSubmit={handleSubmit}>
+                <div className={styles.close} onClick={() => close(false)}>
+                  X
+                </div>
                 <h1>Create Event</h1>
                 <TextField
                   id='new-event-title'
@@ -89,29 +100,71 @@ const NewEvent = () => {
                   onChange={e => setTitle(e.target.value)}
                 />
                 <Spacer size='1em' />
-                {
-                  /*
-                  THINK ABOUT MAKING THIS A RADIO SELECTOR
-                  */
-                }
-                <Select
-                  native
-                  value={day}
-                  onChange={e => setDay(e.target.value)}
-                  inputProps={{
-                    name: 'day',
-                    id: 'new-event-day'
-                  }}
-                >
-                  <option value='' disabled>Pick a day</option>
-                  <option value='Monday'>Monday</option>
-                  <option value='Tuesday'>Tuesday</option>
-                  <option value='Wednesday'>Wednesday</option>
-                  <option value='Thursday'>Thursday</option>
-                  <option value='Friday'>Friday</option>
-                  <option value='Saturday'>Saturday</option>
-                  <option value='Sunday'>Sunday</option>
-                </Select>
+                <FormGroup>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        color='primary'
+                        onChange={() => setSunday(!sunday)}
+                      />
+                    }
+                    label='Sunday'
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        color='primary'
+                        onChange={() => setMonday(!monday)}
+                      />
+                    }
+                    label='Monday'
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        color='primary'
+                        onChange={() => setTuesday(!tuesday)}
+                      />
+                    }
+                    label='Tuesday'
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        color='primary'
+                        onChange={() => setWednesday(!wednesday)}
+                      />
+                    }
+                    label='Wednesday'
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        color='primary'
+                        onChange={() => setThursday(!thursday)}
+                      />
+                    }
+                    label='Thursday'
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        color='primary'
+                        onChange={() => setFriday(!friday)}
+                      />
+                    }
+                    label='Friday'
+                  />
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        color='primary'
+                        onChange={() => setSaturday(!saturday)}
+                      />
+                    }
+                    label='Saturday'
+                  />
+                </FormGroup>
                 <Spacer size='1em' />
                 <TextField
                   id='new-event-start-time'

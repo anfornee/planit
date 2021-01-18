@@ -8,10 +8,33 @@ const EventSchema = new mongoose.Schema({
     trim: true,
     maxlength: [40, 'Title cannot be mor ethan 40 characters.']
   },
-  day: {
-    type: String,
-    required: [true, 'Please add a day.'],
-    trim: true
+  sunday: {
+    type: Boolean,
+    default: false
+  },
+  monday: {
+    type: Boolean,
+    default: false
+  },
+  tuesday: {
+    type: Boolean,
+    default: false
+  },
+  wednesday: {
+    type: Boolean,
+    default: false
+  },
+  thursday: {
+    type: Boolean,
+    default: false
+  },
+  friday: {
+    type: Boolean,
+    default: false
+  },
+  saturday: {
+    type: Boolean,
+    default: false
   },
   startTime: {
     type: String,

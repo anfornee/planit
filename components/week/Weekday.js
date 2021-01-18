@@ -8,13 +8,12 @@ import styles from './weekday.module.css'
 const borderTop = { borderTop: '1px solid rgba(0,0,0,.2)' }
 
 const Weekday = ({ day, events }) => {
-  let todaysEvents = []
-  if (events === undefined) {
-    todaysEvents[0] = 0
-  } else todaysEvents = events
+
+  const todaysEvents = events === undefined ? [0] : events
+
   return (
     <div className={styles.card}>
-      <Card>
+      <Card raised>
         <CardContent>
           <Typography>
             <h1>{day}</h1>

@@ -1,44 +1,66 @@
+import { useState } from 'react'
 import fetch from 'isomorphic-unfetch'
+import Slider from 'react-slick'
+import { Button } from '@material-ui/core'
 import NewEvent from '../../components/week/NewEvent'
 import Weekday from '../../components/week/Weekday'
+import style from '../../styles/Events.module.css'
 
-/*
-*
-*
-*
-*
-Work in functionality to select multiple days
-Probably a radio select for the form
-and a true false check in the database for each day
-*
-*
-*
-*
-*/
+const daysOfTheWeek = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+
+const date = new Date()
+const currentDay = date.getDay()
+
+const slickSettings = {
+  className: style.weekdaySlick,
+  infinite: true,
+  slidesToShow: 1,
+  speed: 300,
+  initialSlide: currentDay
+}
 
 const Events = ({ events }) => {
+  const [newActive, setNewActive] = useState(false)
+
   const days = {}
   events.forEach(event => {
-    if (!days[event.day]) {
-      days[event.day] = [event]
-    } else {
-      days[event.day] = [...days[event.day], event]
-    }
+    daysOfTheWeek.forEach(day => {
+      if (event[day]) {
+        if (!days[day]) {
+          days[day] = [event]
+        } else {
+          days[day] = [...days[days], event]
+        }
+      }
+    })
   })
+
   return (
-    <>
-      <div>
-        <h1>Events</h1>
-        <Weekday day='Monday' events={days.Monday} />
-        <Weekday day='Tuesday' events={days.Tuesday} />
-        <Weekday day='Wednesday' events={days.Wednesday} />
-        <Weekday day='Thursday' events={days.Thursday} />
-        <Weekday day='Friday' events={days.Friday} />
-        <Weekday day='Saturday' events={days.Saturday} />
-        <Weekday day='Sunday' events={days.Sunday} />
-        <NewEvent />
-      </div>
-    </>
+    <div id='events' className={style.events}>
+      <h1>Events</h1>
+      <Slider {...slickSettings}>
+        {
+          daysOfTheWeek.map((day, i) => (
+            <div key={i}>
+              <Weekday day={day} events={days[day]} />
+            </div>
+          ))
+        }
+      </Slider>
+      {
+        newActive
+          ? <NewEvent close={setNewActive} />
+          : (
+            <Button
+              variant='contained'
+              color='primary'
+              onClick={() => setNewActive(true)}
+            >
+              Add Event
+            </Button>
+          )
+      }
+    </div>
   )
 }
 

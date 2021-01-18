@@ -1,0 +1,17 @@
+.events {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+}
+
+.weekdaySlick {
+  width: 435px;
+}
+
+@media screen and (max-width: 640px) {
+  .weekdaySlick {
+    width: 100%;
+  }
+}
