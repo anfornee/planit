@@ -29,7 +29,7 @@ const Events = ({ events }) => {
         if (!days[day]) {
           days[day] = [event]
         } else {
-          days[day] = [...days[days], event]
+          days[day] = [...days[day], event]
         }
       }
     })

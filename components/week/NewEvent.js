@@ -20,6 +20,10 @@ const NewEvent = ({ close }) => {
   const [errors, setErrors] = useState({})
   const router = useRouter()
 
+  const reqDest = window.clientInformation.platform === 'MacIntel'
+    ? 'http://localhost'
+    : 'http://192.168.1.125'
+
   const createEvent = async () => {
     const form = {
       title,
@@ -34,7 +38,7 @@ const NewEvent = ({ close }) => {
       endTime
     }
     try {
-      await fetch('http://localhost:3000/api/events', {
+      await fetch(`${reqDest}:3000/api/events`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
