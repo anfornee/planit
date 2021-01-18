@@ -3,7 +3,7 @@ import fetch from 'isomorphic-unfetch'
 import { useRouter } from 'next/router'
 import { Button, Card, TextField, Checkbox, FormControlLabel, FormGroup } from '@material-ui/core'
 import Spacer from '../../components/Spacer'
-import styles from './new.module.css'
+import styles from '../../styles/New.module.css'
 
 const NewEvent = ({ close }) => {
   const [title, setTitle] = useState('')

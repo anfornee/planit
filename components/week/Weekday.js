@@ -3,7 +3,7 @@ import {
   CardContent,
   Typography
 } from '@material-ui/core'
-import styles from './weekday.module.css'
+import styles from '../../styles/Weekday.module.css'
 
 const borderTop = { borderTop: '1px solid rgba(0,0,0,.2)' }
 
