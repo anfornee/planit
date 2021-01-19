@@ -28,3 +28,13 @@ a {
 #events .slick-next {
   right: -15px !important;
 }
+
+@media screen and (max-width: 640px) {
+  #events .slick-prev {
+    display: none !important;
+  }
+  
+  #events .slick-next {
+    display: none !important;
+  }
+}

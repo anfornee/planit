@@ -7,8 +7,23 @@ import styles from '../../styles/Weekday.module.css'
 
 const borderTop = { borderTop: '1px solid rgba(0,0,0,.2)' }
 
-const Weekday = ({ day, events }) => {
+const formatTime = (time) => {
+  let newTime = time.replace(/^0/, '')
 
+  if (parseInt(newTime) >= 12) {
+    const timeArr = newTime.split(':')
+    if (parseInt(timeArr[0]) > 12) {
+      timeArr[0] = (parseInt(timeArr[0]) - 12).toString()
+    }
+    newTime = timeArr.join(':') + ' pm'
+  } else {
+    newTime = newTime + ' am'
+  }
+
+  return newTime
+}
+
+const Weekday = ({ day, events }) => {
   const todaysEvents = events === undefined ? [0] : events
 
   return (
@@ -22,8 +37,8 @@ const Weekday = ({ day, events }) => {
                 if (event === 0 || !event) {
                   return
                 }
-                const startTime = event.startTime ? event.startTime.replace(/^0/, '') : 'poop'
-                const endTime = event.startTime ? event.endTime.replace(/^0/, '') : 'farts'
+                const startTime = event.startTime ? formatTime(event.startTime) : 'farts'
+                const endTime = event.endTime ? formatTime(event.endTime) : 'poop'
                 return (
                   <p
                     style={i === 0 ? borderTop : {}}
