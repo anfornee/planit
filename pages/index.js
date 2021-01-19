@@ -1,40 +1,40 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import Head from 'next/head'
-import fetch from 'isomorphic-unfetch'
-import Slider from 'react-slick'
-import { Button } from '@material-ui/core'
-import NewEvent from '../components/week/NewEvent'
-import Weekday from '../components/week/Weekday'
+// import fetch from 'isomorphic-unfetch'
+// import Slider from 'react-slick'
+// import { Button } from '@material-ui/core'
+// import NewEvent from '../components/week/NewEvent'
+// import Weekday from '../components/week/Weekday'
 import style from '../styles/Events.module.css'
 
-const daysOfTheWeek = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
+// const daysOfTheWeek = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
 
-const date = new Date()
-const currentDay = date.getDay()
+// const date = new Date()
+// const currentDay = date.getDay()
 
-const slickSettings = {
-  className: style.weekdaySlick,
-  infinite: true,
-  slidesToShow: 1,
-  speed: 300,
-  initialSlide: currentDay
-}
+// const slickSettings = {
+//   className: style.weekdaySlick,
+//   infinite: true,
+//   slidesToShow: 1,
+//   speed: 300,
+//   initialSlide: currentDay
+// }
 
 const Events = ({ events }) => {
-  const [newActive, setNewActive] = useState(false)
+  // const [newActive, setNewActive] = useState(false)
 
-  const days = {}
-  events.forEach(event => {
-    daysOfTheWeek.forEach(day => {
-      if (event[day]) {
-        if (!days[day]) {
-          days[day] = [event]
-        } else {
-          days[day] = [...days[day], event]
-        }
-      }
-    })
-  })
+  // const days = {}
+  // events.forEach(event => {
+  //   daysOfTheWeek.forEach(day => {
+  //     if (event[day]) {
+  //       if (!days[day]) {
+  //         days[day] = [event]
+  //       } else {
+  //         days[day] = [...days[day], event]
+  //       }
+  //     }
+  //   })
+  // })
 
   return (
     <>
@@ -44,7 +44,7 @@ const Events = ({ events }) => {
       </Head>
       <div id='events' className={style.events}>
         <h1>Events</h1>
-        <Slider {...slickSettings}>
+        {/* <Slider {...slickSettings}>
           {
             daysOfTheWeek.map((day, i) => (
               <div key={i}>
@@ -65,19 +65,19 @@ const Events = ({ events }) => {
                 Add Event
               </Button>
             )
-        }
+        } */}
       </div>
     </>
   )
 }
 
-Events.getInitialProps = async () => {
-  const res = await fetch('/api/events')
-  const { data } = await res.json()
+// Events.getInitialProps = async () => {
+//   const res = await fetch('/api/events')
+//   const { data } = await res.json()
 
-  return {
-    events: data
-  }
-}
+//   return {
+//     events: data
+//   }
+// }
 
 export default Events
