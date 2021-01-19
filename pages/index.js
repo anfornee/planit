@@ -44,6 +44,7 @@ const Events = ({ events }) => {
       </Head>
       <div id='events' className={style.events}>
         <h1>Events</h1>
+        {console.log(events)}
         {/* <Slider {...slickSettings}>
           {
             daysOfTheWeek.map((day, i) => (
@@ -72,9 +73,15 @@ const Events = ({ events }) => {
 }
 
 Events.getInitialProps = async () => {
+  let data
+  try {
+    const res = await fetch('https://planit-seven.vercel.app/api/events')
+    data = res.json()
+  } catch (error) {
+    data = error
+  }
   // const res = await fetch('/api/events')
   // const { data } = await res.json()
-  const data = 'farts'
 
   return {
     events: data
