@@ -1,6 +1,6 @@
 // import { useState } from 'react'
 import Head from 'next/head'
-// import fetch from 'isomorphic-unfetch'
+import fetch from 'isomorphic-unfetch'
 // import Slider from 'react-slick'
 // import { Button } from '@material-ui/core'
 // import NewEvent from '../components/week/NewEvent'
@@ -71,13 +71,13 @@ const Events = ({ events }) => {
   )
 }
 
-// Events.getInitialProps = async () => {
-//   const res = await fetch('/api/events')
-//   const { data } = await res.json()
+Events.getInitialProps = async () => {
+  const res = await fetch('/api/events')
+  const { data } = await res.json()
 
-//   return {
-//     events: data
-//   }
-// }
+  return {
+    events: data
+  }
+}
 
 export default Events
