@@ -72,8 +72,9 @@ const Events = ({ events }) => {
 }
 
 Events.getInitialProps = async () => {
-  const res = await fetch('/api/events')
-  const { data } = await res.json()
+  // const res = await fetch('/api/events')
+  // const { data } = await res.json()
+  const data = 'farts'
 
   return {
     events: data
